@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.lint.libraryservice.models.Book;
 import ru.lint.libraryservice.models.Person;
+import ru.lint.libraryservice.services.BookService;
 import ru.lint.libraryservice.services.PersonService;
 
 import java.util.Optional;
@@ -15,15 +17,17 @@ import java.util.Optional;
 @RequestMapping("/people")
 public class PersonController {
     private final PersonService personService;
+    private final BookService bookService;
 
     @Autowired
-    public PersonController(PersonService personService) {
+    public PersonController(PersonService personService, BookService bookService) {
         this.personService = personService;
+        this.bookService = bookService;
     }
 
     @GetMapping()
     public String showAllPeople(Model model) {
-        model.addAttribute("people", personService.findAllPeople());
+        model.addAttribute("people", personService.findPeople());
         return "people/all";
     }
 
@@ -32,6 +36,8 @@ public class PersonController {
         Optional<Person> person = personService.findPerson(id);
         if (person.isPresent()) {
             model.addAttribute("person", person.get());
+            model.addAttribute("books", bookService.findOwnerBooks(id));
+            System.out.println(bookService.findOwnerBooks(id).size());
             return "people/show-person";
         }
         return "redirect:/people";

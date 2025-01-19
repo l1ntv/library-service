@@ -10,13 +10,26 @@
 <div th:text="${person.getName() + ' ' + person.getSurname() + ' ' + person.getPatronymic() + ', ' + person.getBirthYear()}">
     user
 </div>
+<hr width="100%" size="2">
 <h>Information about person`s books:</h>
-<a th:href="@{/people}">Back</a>
-</br>
-<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>
-</br>
+
+<div th:if="${books != null and not #lists.isEmpty(books)}">
+    <ul>
+        <li th:each="book : ${books}">
+            <span th:text="${book.getName() + ', ' + book.getAuthorName() + ', ' + book.getCreatingYear()}"></span>
+        </li>
+    </ul>
+</div>
+<div th:if="${books == null or #lists.isEmpty(books)}">
+    <p>No books</p>
+</div>
+
+<hr width="100%" size="2">
 <form th:method="DELETE" th:action="@{/people/{id}/delete(id=${person.getId()})}" th:object="${person}">
     <input type="submit" value="Delete"/>
 </form>
+<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>
+</br>
+<a th:href="@{/people}">Back</a>
 </body>
 </html>

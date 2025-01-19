@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 public class Person {
-    private int id;
+    private Integer id;
 
     @NotEmpty
     @Size(min = 1, max = 255, message = "The name must not be empty and must not exceed 255 characters")
@@ -25,5 +25,5 @@ public class Person {
 
     @Min(value = 1901, message = "The minimum value for the year of birth is 1901")
     @Max(value = 2025, message = "The maximum value for the year of birth is 2025")
-    private int birthYear;
+    private Integer birthYear;
 }

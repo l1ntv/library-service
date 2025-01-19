@@ -12,14 +12,14 @@ import java.util.Optional;
 @Component
 public class PersonDAOImpl implements PersonDAO {
 
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     @Autowired
     private PersonDAOImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Person> findAllPeople() {
+    public List<Person> findPeople() {
         return jdbcTemplate.query("SELECT * FROM Person", new BeanPropertyRowMapper<>(Person.class));
     }
 
@@ -27,15 +27,15 @@ public class PersonDAOImpl implements PersonDAO {
         return jdbcTemplate.query("SELECT * FROM Person WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
     }
 
-    public void editPerson(Person editedPerson) {
+    public void update(Person editedPerson) {
         jdbcTemplate.update("UPDATE Person SET name=?, surname=?, patronymic=?, birth_year=? WHERE id=?", editedPerson.getName(), editedPerson.getSurname(), editedPerson.getPatronymic(), editedPerson.getBirthYear(), editedPerson.getId());
     }
 
-    public void deletePerson(int id) {
+    public void delete(int id) {
         jdbcTemplate.update("DELETE FROM Person WHERE id=?", id);
     }
 
-    public void createPerson(Person person) {
+    public void insert(Person person) {
         jdbcTemplate.update("INSERT INTO Person (name, surname, patronymic, birth_year) VALUES (?, ?, ?, ?)", person.getName(), person.getSurname(), person.getPatronymic(), person.getBirthYear());
     }
 }

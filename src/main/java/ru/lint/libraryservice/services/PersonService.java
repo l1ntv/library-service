@@ -10,15 +10,15 @@ import java.util.Optional;
 
 @Component
 public class PersonService {
-    private PersonDAO personDAO;
+    private final PersonDAO personDAO;
 
     @Autowired
     private PersonService(PersonDAO personDAO) {
         this.personDAO = personDAO;
     }
 
-    public List<Person> findAllPeople() {
-        return personDAO.findAllPeople();
+    public List<Person> findPeople() {
+        return personDAO.findPeople();
     }
 
     public Optional<Person> findPerson(int id) {
@@ -26,14 +26,14 @@ public class PersonService {
     }
 
     public void editPerson(Person editedPerson) {
-        personDAO.editPerson(editedPerson);
+        personDAO.update(editedPerson);
     }
 
     public void deletePerson(int id) {
-        personDAO.deletePerson(id);
+        personDAO.delete(id);
     }
 
     public void createPerson(Person person) {
-        personDAO.createPerson(person);
+        personDAO.insert(person);
     }
 }

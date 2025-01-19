@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PersonDAO {
-    List<Person> findAllPeople();
+    List<Person> findPeople();
 
     Optional<Person> findPerson(int id);
 
-    void editPerson(Person editedPerson);
+    void update(Person editedPerson);
 
-    void deletePerson(int id);
+    void delete(int id);
 
-    void createPerson(Person person);
+    void insert(Person person);
 }
