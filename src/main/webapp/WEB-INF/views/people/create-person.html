@@ -5,9 +5,7 @@
     <title>Create person</title>
 </head>
 <body>
-
 <h2>Create person</h2>
-
 <form th:method="POST" th:action="@{/people/create}" th:object="${person}">
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>
@@ -27,7 +25,6 @@
     <br/>
     <input type="submit" value="Create"/>
 </form>
-
 <a th:href="@{/people}">Back</a>
 </body>
 </html>

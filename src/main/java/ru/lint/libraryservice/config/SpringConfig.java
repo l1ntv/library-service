@@ -57,17 +57,15 @@ public class SpringConfig implements WebMvcConfigurer {
         dataSource.setUrl(environment.getProperty("url"));
         dataSource.setUsername(environment.getProperty("name"));
         dataSource.setPassword(environment.getProperty("password"));
-
         try {
             dataSource.getConnection().close();
             System.out.println("Successful connection to database");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Can not connect to the database");
             e.printStackTrace();
         }
         return dataSource;
     }
-
 
     @Bean
     public JdbcTemplate jdbcTemplate() {

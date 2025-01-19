@@ -16,7 +16,6 @@
     <span th:if="${owner == null}" th:text="'This book is free. Who should I assign it to?'"></span>
     <span th:unless="${owner == null}"
           th:text="'The book is currently occupied by: ' + ${owner.name} + ' ' + ${owner.surname} + ' ' + ${owner.patronymic}"></span>
-
     <div th:if="${owner == null}">
         <label for="newOwner">Choose a person: </label>
         <form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getBookId()})}" id="newOwner">

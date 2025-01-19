@@ -23,7 +23,6 @@
 <div th:if="${books == null or #lists.isEmpty(books)}">
     <p>No books</p>
 </div>
-
 <hr width="100%" size="2">
 <form th:method="DELETE" th:action="@{/people/{id}/delete(id=${person.getId()})}" th:object="${person}">
     <input type="submit" value="Delete"/>

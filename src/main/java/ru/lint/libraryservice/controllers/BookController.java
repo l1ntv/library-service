@@ -96,5 +96,4 @@ public class BookController {
         bookService.freeOwner(id);
         return String.format("redirect:/books/%d", id);
     }
-
 }

@@ -19,16 +19,17 @@ public class BookService {
     }
 
     public List<Book> findBooks() {
-        return this.bookDAO.findBooks();
+        return bookDAO.findBooks();
     }
 
     public Optional<Book> findBook(int id) {
-        return this.bookDAO.findBook(id);
+        return bookDAO.findBook(id);
     }
 
     public Optional<Person> findBookOwner(int bookId) {
-        return this.bookDAO.findBookOwner(bookId);
+        return bookDAO.findBookOwner(bookId);
     }
+
     public List<Book> findOwnerBooks(int ownerId) {
         return bookDAO.findOwnerBooks(ownerId);
     }
